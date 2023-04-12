@@ -1,0 +1,204 @@
+:not(:defined) > * {
+  display: none;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#controls {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  max-width: unset;
+  transform: unset;
+  pointer-events: auto;
+  z-index: 100;
+}
+
+.dot{
+  display: none;
+}
+
+.dim{
+  background: #fff;
+  border-radius: 4px;
+  border: none;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  color: rgba(0, 0, 0, 0.8);
+  display: block;
+  font-family: Futura, Helvetica Neue, sans-serif;
+  font-size: 1em;
+  font-weight: 700;
+  max-width: 128px;
+  overflow-wrap: break-word;
+  padding: 0.5em 1em;
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  transform: translate3d(-50%, -50%, 0);
+  pointer-events: none;
+  --min-hotspot-opacity: 0;
+}
+
+@media only screen and (max-width: 800px) {
+  .dim{
+    font-size: 3vw;
+  }
+}
+
+.dimensionLineContainer{
+  pointer-events: none;
+  display: block;
+}
+
+.dimensionLine{
+  stroke: #16a5e6;
+  stroke-width: 2;
+  stroke-dasharray: 2;
+}
+
+.hide{
+  display: none;
+}
+
+model-viewer {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+}
+
+.hotspot {
+  position: absolute;
+  display: block;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  border-radius: 50% 50%;
+  background-color: #3b48ff;
+  color: white;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  backface-visibilty: hidden;
+  -webkit-transition: all 0.3s ease 0.1, border-radius 0.1s ease 0.2;
+  transition: all 0.3s ease 0.1, border-radius 0.1s ease 0.2;
+  animation: wave 1s infinite;
+}
+.hotspot.open {
+  border-radius: 15px;
+  width: 140px;
+  height: 50px;
+  max-height: 300px;
+  -webkit-transition: all 0.3s ease, border-radius 0.1s ease;
+  transition: all 0.3s ease, border-radius 0.1s ease;
+  animation: wave 0s infinite;
+}
+.hotspot.open .icon {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.hotspot.open .content {
+  opacity: 1;
+  -webkit-transition: opacity 0.2s ease 0.2s;
+  transition: opacity 0.2s ease 0.2s;
+}
+.hotspot .icon {
+  position: absolute;
+  display: block;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+@keyframes wave {
+  from {
+    box-shadow: 0 0 0 0 #3b48ff;
+  }
+  to {
+    box-shadow: 0 0 0 10px #F9161510;
+  }
+}
+.hotspot .content {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  margin: 0;
+  overflow: auto;
+  height: 240px;
+  width: 240px;
+  opacity: 0;
+  -webkit-transition: opacity 0.1s ease 0s;
+  transition: opacity 0.1s ease 0s;
+}
+.hotspot .content h4 {
+  margin: 0 0 10px 0;
+}
+.hotspot .content p {
+  margin: 0 0 30px 0;
+}
+.hotspot .content .btn {
+  padding: 10px 20px;
+  line-height: 20px;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  box-shadow: 0px 0px 5px #3b48ff;
+}
+.hotspot.left-top .icon {
+  top: 0;
+  left: 0;
+}
+.hotspot.right-top .icon {
+  left: auto;
+  top: 0;
+  right: 0;
+}
+.hotspot.left-bottom .icon {
+  left: 0;
+  bottom: 0;
+}
+.hotspot.right-bottom .icon {
+  bottom: 0;
+  right: 0;
+}
+
+.progress-bar {
+  display: block;
+  width: 33%;
+  height: 10%;
+  max-height: 2%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  border-radius: 25px;
+  box-shadow: 0px 3px 10px 3px rgba(0, 0, 0, 0.5), 0px 0px 5px 1px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.progress-bar.hide {
+  visibility: hidden;
+  transition: visibility 0.3s;
+}
+
+.update-bar {
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 0%;
+  height: 100%;
+  border-radius: 25px;
+  float: left;
+  transition: width 0.3s;
+}
